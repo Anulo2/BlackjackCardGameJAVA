@@ -5,7 +5,8 @@ public class ProvaStampaCarte{
 			Carta e2 = new Carta(2, 1);
 			Carta[] d = {e1, e2};
 			StampaCarte stampa = new StampaCarte(d);
-			System.out.println(stampa.StampaggioCarte());
+			//System.out.println(stampa.StampaggioCarte());
+			stampa.StampaggioCarte();
 
 		}catch(CartaNonValidaEcc e){}
 	}
