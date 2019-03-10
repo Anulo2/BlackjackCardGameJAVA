@@ -255,4 +255,8 @@ public class Mazzo{
 		}
 		System.out.println();
 	}
+	public String stampaMazzoASCII(int m){
+		StampaCarte carteASCII = new StampaCarte(carte);
+		return carteASCII.StampaggioCarte(m);
+	}
 }
