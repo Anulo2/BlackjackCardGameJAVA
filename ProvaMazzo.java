@@ -35,8 +35,8 @@ public class ProvaMazzo{
 			Carta e1 = new Carta(1, 1);
 			Carta e2 = new Carta(2, 1);
 			Carta[] d = {e1, e2};
-			mazzo.mescola();
-			System.out.println(mazzo.stampaMazzoASCII(6));
+			//mazzo.mescola();
+			System.out.println(mazzo.stampaMazzoASCII(8));
 			
 
 		}catch(CartaNonValidaEcc e){}
