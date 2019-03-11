@@ -20,26 +20,26 @@ public class ProvaMazzo{
 		*/
 		
 		mazzo.stampaMazzo(true);
+		
+		/*
 		System.out.println("-----------ESTRAI---------");
 		mazzo.estrai(3);
 		mazzo.stampaMazzo(true);
+		*/
 		
+		/*
 		try{
 			Carta c3 = new Carta(4, 1);
 			System.out.println("-----------INSERISCI---------");
 			mazzo.inserisci(c3);//, 5);
 			mazzo.stampaMazzo(true);
 		}catch(CartaNonValidaEcc e){}
+		*/
 		
-		try{
-			Carta e1 = new Carta(1, 1);
-			Carta e2 = new Carta(2, 1);
-			Carta[] d = {e1, e2};
 			//mazzo.mescola();
 			System.out.println(mazzo.stampaMazzoASCII(8));
 			
 
-		}catch(CartaNonValidaEcc e){}
 	
 		
 		
