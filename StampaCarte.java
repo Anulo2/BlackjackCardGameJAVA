@@ -1,6 +1,6 @@
 public class StampaCarte{
 	
-	String[] linee = new String[7];
+	String[] linee = new String[8];
 	
 	String risultato = "";
 	String extra = "";
@@ -289,12 +289,13 @@ public class StampaCarte{
 				if (valoreCarta != "10"){
 					if (semeCarta == SEMI[0]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   .    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    .    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   /.\\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_._)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[1]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
