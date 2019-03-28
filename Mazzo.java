@@ -1,6 +1,6 @@
 /** 
  * Classe contenente tutti i metodi necesari alla creazione alla manipolazione di un mazzo di 52.
- * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodan Popov, Alberto Bettellella e Simone Dassani
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodan Popov, Alberto Bettella e Simone Dassani
  * @version 1.0 (21-02-2019)
 */
 import java.util.Random;
@@ -104,7 +104,7 @@ public class Mazzo{
 	
 	/**
 	* Estrae la carta alla posizione desiderata
-	* @param n Posizione carta da estrarre
+	* @param n
 	* @return carta estratta
 	*/
 	public Carta estrai(int n){
@@ -116,7 +116,7 @@ public class Mazzo{
 	
 	/**
 	* Inserisce in cima al mazzo la carta desiderata
-	* @param c Carta da inserire
+	* @param c
 	*/
 	public void inserisci(Carta c){
 		addNumCarte();
@@ -126,8 +126,8 @@ public class Mazzo{
 	
 	/**
 	* Inserisce la carta desiderata in una posizione del mazzo specifica
-	* @param c Carta da inserire
-	* @param n Posizione alla quale inserire la carta
+	* @param c
+	* @param n
 	*/
 	public void inserisci(Carta c, int n){
 		addNumCarte();
@@ -137,7 +137,7 @@ public class Mazzo{
 	
 	/**
 	* Trova la posizione di una carta desiderata
-	* @param c Carta da cercare
+	* @param c
 	* @return posizione
 	*/
 	public int cerca(Carta c){
@@ -145,7 +145,10 @@ public class Mazzo{
 		int i = 0;
 		while(i < numCarte && posizione == -1){
 			
-			if (carte[i].ugualeCarta(c)){
+			if (c.getSem().getS() == carte[i].getSem().getS() 
+								  &&
+				c.getVal().getV() == carte[i].getVal().getV()){
+					
 				posizione = i;
 			}
 			i++;
@@ -172,7 +175,6 @@ public class Mazzo{
 	/**
 	* Imposta un array di carte voluto come mazzo
 	* @param c[] Array di carte
-	* @throws CarteNonSuffEcc Se la lunghezza dell'array di carte da copiare minore di MAXCARTE
 	*/
 	public void setCarte(Carta[] c) throws CarteNonSuffEcc{
 		if(c.length < MAXCARTE)

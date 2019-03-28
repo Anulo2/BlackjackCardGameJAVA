@@ -1,9 +1,11 @@
+
 public class StampaCarte{
 	
 	String[] linee = new String[8];
 	
 	String risultato = "";
 	String extra = "";
+	int lunghezzaArray=0;
 	
 	Carta[] d;
 	/*
@@ -50,223 +52,20 @@ public class StampaCarte{
 		d = new Carta[c.length];
 		for (int i=0; i<c.length; i++){
 			d[i]=c[i];
+			if (d[i] != null){
+				lunghezzaArray++;
+			}
 		}
 	}
 	
 	
-	/*
-	public String StampaggioCarte(int numCarte){
-		int lunghezzaArray= d.length;
-		int i=0;
-		int numRis = 0;
-		while(i<lunghezzaArray){
-			i= i+numCarte;
-			numRis++;
-		}
-		String[] risultati = new String[numRis];
-		numRis=0;
-		i=0;
-		for(int p = 0; p<linee.length; p++){
-			linee[p] = "";
-		}
-		while(i+numCarte<lunghezzaArray){
-			for(int t=i; t<(i+numCarte); t++){
-				String semeCarta = SEMI[d[t].getSem().getS() - 1];
-				String valoreCarta = VALORI[d[t].getVal().getV() - 1];
-				
-				if (valoreCarta != "10" ){
-					if (semeCarta == SEMI[0]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   .    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[1]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   _    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[2]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   ^    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[3]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  _ _   \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}				
-				}
-				else{
-					if (semeCarta == SEMI[0]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  .    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[1]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  _    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[2]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  ^    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}
-					else if (semeCarta == SEMI[3]){
-						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + " _ _   \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-					}	
-				}
-			}
-			risultati[numRis] = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n";
-			for(int p = 0; p<linee.length; p++){
-				linee[p] = "";
-			}
-			i= i+numCarte;
-			numRis++;
-		
-		}
-		for(int p = 0; p<linee.length; p++){
-			linee[p] = "";
-		}
-		for(int j= i; j<d.length; j++){
-			
-			String semeCarta = SEMI[d[j].getSem().getS() - 1];
-			
-			String valoreCarta = VALORI[d[j].getVal().getV() - 1];
-			
-			
-			if (valoreCarta != "10"){
-				if (semeCarta == SEMI[0]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   .    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[1]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   _    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[2]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   ^    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[3]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  _ _   \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}				
-			}
-			else{
-				if (semeCarta == SEMI[0]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  .    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[1]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  _    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[2]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  ^    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[3]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + " _ _   \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}	
-			}
-			
-			
-		}
-		extra = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n";
-		
-		for(int p = 0; p< risultati.length; p++){
-			risultato= risultato + risultati[p];
-		}
-		risultato = risultato.substring(0, risultato.length()-4) + extra;
-		return risultato;
-			
-		
-		
-	}
-	*/
 	
 	
 	public String StampaggioCarte(int numCarte){
-		int lunghezzaArray= d.length;
+		
 		int i=0;
 		int numRis = 0;
-		while(i<lunghezzaArray){
+		while(i<=lunghezzaArray){
 			i= i+numCarte;
 			numRis++;
 		}
@@ -279,7 +78,7 @@ public class StampaCarte{
 				linee[h] = "";
 			}
 			for(int p=g*numCarte; p<numSucc; p++){
-				
+
 				semeCarta = SEMI[d[p].getSem().getS() - 1];
 			
 				valoreCarta = VALORI[d[p].getVal().getV() - 1];
@@ -299,72 +98,79 @@ public class StampaCarte{
 					}
 					else if (semeCarta == SEMI[1]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   _    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    _    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   ( )   \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_'_)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[2]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "   ^    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    ^    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   / \\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[3]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  _ _   \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C   _ _   \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C  ( v )  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}				
 				}
 				else{
 					if (semeCarta == SEMI[0]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  .    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    .    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   /.\\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_._)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[1]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  _    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    _    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   ( )   \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_'_)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[2]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + "  ^    \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    ^    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   / \\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}
 					else if (semeCarta == SEMI[3]){
 						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-						linee[1] = linee[1] + "\u007C" + valoreCarta + " _ _   \u007C" + "           ";
-						linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-						linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-						linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-						linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-						linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C   _ _   \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C  ( v )  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
 					}	
 				}
 			}
-			risultati[g] = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n";
+			risultati[g] = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n" + linee[7] + "\n";
 			numSucc = ((g+1)* numCarte)+numCarte;
 			if (numSucc > lunghezzaArray){
 				do{
@@ -395,89 +201,99 @@ public class StampaCarte{
 			
 			
 			if (valoreCarta != "10"){
-				if (semeCarta == SEMI[0]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   .    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					if (semeCarta == SEMI[0]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    .    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   /.\\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_._)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[1]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    _    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   ( )   \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_'_)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[2]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    ^    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   / \\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[3]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "        \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C   _ _   \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C  ( v )  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C        " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}				
 				}
-				else if (semeCarta == SEMI[1]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   _    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+				else{
+					if (semeCarta == SEMI[0]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    .    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   /.\\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_._)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[1]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    _    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   ( )   \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C  (_'_)  \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    |    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[2]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C    ^    \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C   / \\\u0020  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}
+					else if (semeCarta == SEMI[3]){
+						linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
+						linee[1] = linee[1] + "\u007C" + valoreCarta + "       \u007C" + "           ";
+						linee[2] = linee[2] + "\u007C   _ _   \u007C" + "           ";
+						linee[3] = linee[3] + "\u007C  ( v )  \u007C" + "           ";
+						linee[4] = linee[4] + "\u007C   \\\u0020/   \u007C" + "           ";
+						linee[5] = linee[5] + "\u007C    .    \u007C" + "           ";
+						linee[6] = linee[6] + "\u007C       " + valoreCarta + "\u007C" + "           ";
+						linee[7] = linee[7] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
+					}	
 				}
-				else if (semeCarta == SEMI[2]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "   ^    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[3]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  _ _   \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C        " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}				
-			}
-			else{
-				if (semeCarta == SEMI[0]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  .    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   /.\\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_._)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[1]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  _    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   ( )   \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C  (_'_)  \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    |    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[2]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + "  ^    \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C   / \\\u0020  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}
-				else if (semeCarta == SEMI[3]){
-					linee[0] = linee[0] + "\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510" + "           ";
-					linee[1] = linee[1] + "\u007C" + valoreCarta + " _ _   \u007C" + "           ";
-					linee[2] = linee[2] + "\u007C  ( v )  \u007C" + "           ";
-					linee[3] = linee[3] + "\u007C   \\\u0020/   \u007C" + "           ";
-					linee[4] = linee[4] + "\u007C    .    \u007C" + "           ";
-					linee[5] = linee[5] + "\u007C       " + valoreCarta + "\u007C" + "           ";
-					linee[6] = linee[6] + "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518" + "           ";	
-				}	
-			}
 			
 			
 		}
-		String risultato = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n";
+		String risultato = linee[0] + "\n" + linee[1] + "\n" + linee[2] + "\n" + linee[3] + "\n" + linee[4] + "\n" + linee[5] + "\n" + linee[6] + "\n" + linee[7] + "\n";
 		return risultato;							
 	}
+	
 }
 
 			 
 			 
+
 
