@@ -1,9 +1,8 @@
 /**
  * Classe per gestire una carta
  *@version 1.0 (21-02-2019)
- * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodan Popov, Alberto Bettella e Simone Dassani
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodgan Popov, Alberto Bettella e Simone Dassani
  */
-
 public class Carta{
 	/**
 	 * Seme della carta
@@ -14,19 +13,35 @@ public class Carta{
 	 */
 	Valore val;
 	
-	public Carta(Seme s, Valore v){
+	int stats;
+	
+	public Carta(Seme s, Valore v, int status){
 		sem = s;
 		val = v;
+		stats = status;
 	}
 	
-	public Carta(int s, int v)throws CartaNonValidaEcc{
+	public Carta(int s, int v, int status)throws CartaNonValidaEcc{
 		
 		try{
 			sem = new Seme(s);
 			val = new Valore(v);
+			stats = status;
 		}catch(CartaNonValidaEcc e){
 			throw new CartaNonValidaEcc();
 		}
+	}
+	
+	public int getStatus(){
+		return stats;
+	}
+	
+	public String getStatusString(){
+		return stats==1 ? "Coperta" : "Scoperta";
+	}
+	
+	public void setStatus(int status){
+		stats=status;
 	}
 	
 	/**

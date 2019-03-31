@@ -1,6 +1,6 @@
 /** 
  * Classe contenente tutti i metodi necesari alla creazione alla manipolazione di un mazzo di 52.
- * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodan Popov, Alberto Bettella e Simone Dassani
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bogdan Popov, Alberto Bettella e Simone Dassani
  * @version 1.0 (21-02-2019)
 */
 import java.util.Random;
@@ -8,7 +8,7 @@ public class Mazzo{
 	/**
 	* Numero massimo di carte nel mazzo;
 	*/
-	private final int MAXCARTE = 52;
+	private int maxCarte;
 	
 	/**
 	* Array di carte
@@ -23,9 +23,25 @@ public class Mazzo{
 	/**
 	* Crea un array di carte grande quanto il numero di carte massimo e inizializza il mazzo ai valori default
 	*/
+	
+	private int status;
+	
 	public Mazzo(){
-		carte = new Carta[MAXCARTE];		
+		maxCarte = 52;
+		carte = new Carta[maxCarte];		
 		inizializza();
+	}
+	public Mazzo(int n){
+		maxCarte = 52 * n;
+		carte = new Carta[maxCarte];		
+		inizializza();
+	}
+	
+	public Mazzo(int n, int stats){
+		maxCarte = 52 * n;
+		carte = new Carta[maxCarte];		
+		inizializza(stats);
+		status=stats;
 	}
 
 	/**
@@ -33,16 +49,38 @@ public class Mazzo{
 	*/
 	public void inizializza(){
 		int k = 0;
-		for(int i = 1; i < 14; i++){
-			for(int j = 1; j < 5; j++){
-				try{
-					carte[k] = new Carta(j, i);
-				}catch(CartaNonValidaEcc e){}
-				k++;
+		for(int l = 0; l < maxCarte / 52; l++){
+			for(int i = 1; i < 14; i++){
+				for(int j = 1; j < 5; j++){
+					try{
+						carte[k] = new Carta(j, i, 1);
+					}catch(CartaNonValidaEcc e){
+						System.out.println(e.getMessage());
+					}
+					k++;
+				}
 			}
 		}
 		setNumCarte(k);
 	}
+	
+	public void inizializza(int status){
+		int k = 0;
+		for(int l = 0; l < maxCarte / 52; l++){
+			for(int i = 1; i < 14; i++){
+				for(int j = 1; j < 5; j++){
+					try{
+						carte[k] = new Carta(j, i, status);
+					}catch(CartaNonValidaEcc e){
+						System.out.println(e.getMessage());
+					}
+					k++;
+				}
+			}
+		}
+		setNumCarte(k);
+	}
+
 	
 	/**
 	* Mescola il mazzo
@@ -68,7 +106,6 @@ public class Mazzo{
 			//System.out.println("Shift verso destra [" + (i + 1) + "] 
 			//										   <-- [" + i
 			//			                			   + "]");
-				
 			carte[i + 1] = carte[i];
 		}
 	}	
@@ -80,13 +117,13 @@ public class Mazzo{
 	private void shiftSx(int pos){
 		
 		if(carte[pos] == null){
-			for (int i = pos + 1; i < MAXCARTE; i++) {                
+			for (int i = pos + 1; i < maxCarte; i++) {                
 				//System.out.println("Shift verso sinistra [" 
 				//					  + (i - 1) + "] <-- [" + i + "]");
 					
 				carte[i - 1] = carte[i];
 			}
-			carte[MAXCARTE - 1] = null;
+			carte[maxCarte - 1] = null;
 			subNumCarte();
 		}
 	}
@@ -119,9 +156,11 @@ public class Mazzo{
 	* @param c
 	*/
 	public void inserisci(Carta c){
-		addNumCarte();
+		if(numCarte < 52)
+			addNumCarte();
 		shiftDx(0);
 		carte[0] = c;
+		
 	}
 	
 	/**
@@ -130,9 +169,11 @@ public class Mazzo{
 	* @param n
 	*/
 	public void inserisci(Carta c, int n){
-		addNumCarte();
+		if(numCarte < 52)
+			addNumCarte();
 		shiftDx(n);
 		carte[n] = c;
+		//addNumCarte();
 	}
 	
 	/**
@@ -177,11 +218,19 @@ public class Mazzo{
 	* @param c[] Array di carte
 	*/
 	public void setCarte(Carta[] c) throws CarteNonSuffEcc{
-		if(c.length < MAXCARTE)
-			throw new CarteNonSuffEcc(MAXCARTE);
+		if(c.length < maxCarte)
+			throw new CarteNonSuffEcc(maxCarte);
 					
-		for(int i = 0; i < MAXCARTE; i++)
+		for(int i = 0; i < maxCarte; i++)
 			carte[i] = c[i];
+	}
+	
+	/**
+	* Riempie l'array di carte del mazzo con oggetti null
+	*/
+	public void setCarteNull(){
+		for(int i = 0; i < maxCarte; i++)
+			carte[i] = null;
 	}
 	
 	/**
@@ -230,14 +279,16 @@ public class Mazzo{
 				
 		if(modo){
 			int k = 0;
-			for(int i = 1; i < 14; i++){
-				for(int j = 1; j < 5; j++){
-					if(carte[k] != null)
-						System.out.println(carte[k].cartaStringa() + 
-										   " [" + (k + 1) + "]");
-					k++;
+			for(int l = 0; l < maxCarte / 52; l++){
+				for(int i = 1; i < 14; i++){
+					for(int j = 1; j < 5; j++){
+						if(carte[k] != null)
+							System.out.println(carte[k].cartaStringa() + 
+											   " [" + (k + 1) + "]");
+						k++;
+					}
+					System.out.println();
 				}
-				System.out.println();
 			}
 		}else{
 			for(int i = 0; i < numCarte; i++){
@@ -251,7 +302,7 @@ public class Mazzo{
 			}
 		}
 				
-		for(int j = numCarte; j < MAXCARTE; j++){
+		for(int j = numCarte; j < maxCarte; j++){
 			System.out.println("\nPosizione (del mazzo) [" + 
 								(j + 1) + "] libera");
 		}
@@ -259,6 +310,10 @@ public class Mazzo{
 	}
 	public String stampaMazzoASCII(int m){
 		StampaCarte carteASCII = new StampaCarte(carte);
+		return carteASCII.StampaggioCarte(m);
+	}
+	public String stampaMazzoASCII(Carta[] c, int m){
+		StampaCarte carteASCII = new StampaCarte(c);
 		return carteASCII.StampaggioCarte(m);
 	}
 }
