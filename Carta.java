@@ -20,6 +20,21 @@ public class Carta{
 		val = v;
 		stats = status;
 	}
+	public Carta(Seme s, Valore v){
+		sem = s;
+		val = v;
+		stats = 0;
+	}
+	public Carta(int s, int v)throws CartaNonValidaEcc{
+		
+		try{
+			sem = new Seme(s);
+			val = new Valore(v);
+			stats = 0;
+		}catch(CartaNonValidaEcc e){
+			throw new CartaNonValidaEcc();
+		}
+	}
 	
 	public Carta(int s, int v, int status)throws CartaNonValidaEcc{
 		
