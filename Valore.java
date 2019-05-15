@@ -1,7 +1,7 @@
 /**
  * Classe che rappresenta il valore delle carte.
  * @version 1.0 (21-02-2019)
- * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bodan Popov, Alberto Bettella e Simone Dassani
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bogdan Popov, Alberto Bettella e Simone Dassani
  */
 
 public class Valore{
