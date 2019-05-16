@@ -1,12 +1,31 @@
-
+/** 
+ * Classe contenente tutti i metodi necesari per la visualizzazione grafica delle carte.
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bogdan Popov, Alberto Bettella e Simone Dassani
+ * @version 1.0 (21-02-2019)
+*/
 public class StampaCarte{
 	
+	/**
+	* Linee dove verranno create le carte graficamente.
+	*/
 	String[] linee = new String[8];
 	
+	/**
+	* Stringa che verrà restituita con le carte.
+	*/
 	String risultato = "";
-	String extra = "";
+	
+	/**
+	* Numero di giocatori.
+	*/
+	/**
+	* Lunghezza dell'array di carte usata per il corretto funzionamento della classe.
+	*/
 	int lunghezzaArray=0;
 	
+	/**
+	* Array di carte usato per la gestione di esse.
+	*/
 	Carta[] d;
 	/*
 	String[] SEMI = new String[]{			   "  .  \n
@@ -30,9 +49,14 @@ public class StampaCarte{
 												  .  ",
 											   };
 	*/
+	/**
+	* Array di stringhe contenente i semi in forma grafica.
+	*/
 	String[] SEMI = new String[]{			   "  .  \n /.\\\u0020\n(_._)\n  |  ", "  _  \n ( ) \n(_'_)\n  |  ", "  ^  \n / \\\u0020\n \\\u0020/ \n  .  "," _ _ \n( v )\n \\\u0020/ \n  .  ",   };
 											   
-											   
+	/**
+	* Array di stringhe contenente i valori possibili.
+	*/									   
 	String[] VALORI = new String[]{											 
 											 "A",  
 											 "2", 
@@ -48,6 +72,10 @@ public class StampaCarte{
 											 "Q", 
 											 "K"
 											 };
+	/**
+	* Inizializza l'array di carte da stampare e la lunghezza di esso.
+	* @param c[] Array di carte
+	*/
 	public StampaCarte(Carta[] c){
 		d = new Carta[c.length];
 		for (int i=0; i<c.length; i++){
@@ -60,7 +88,11 @@ public class StampaCarte{
 	
 	
 	
-	
+	/**
+	* Trasforma l'array di carte in una stringa per raffigurarle.
+	* @param numCarte numero di carte per riga
+	* @return risultato
+	*/
 	public String StampaggioCarte(int numCarte){
 		
 		int i=0;

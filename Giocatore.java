@@ -1,11 +1,26 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
+/** 
+ * classe contenente tutti i metodi corrispondenti alle varie azioni che un utente può svolgere durante un partita
+ * @author Alberto Bettella, Leonardo Canello, Leonardo Daniele, Simone Dassani Bogdan Popov, Gabriele Trevisan
+ * @version 1.0 (21-02-2019)
+*/
 public class Giocatore{
-	
+	/**
+	* Crea l'array di mani
+	*/
 	private Mano[] mano;
+	/**
+	* crea il mazzo;
+	*/
 	private Mazzo mazzo;
+	/**
+	* Indica il numero di vittorie;
+	*/
 	private int vittorie;
-	
+	/**
+	* Inizializza il numero di carte nella mano del giocatore
+	*/
 	public Giocatore(){
 		mano = new Mano[2];
 		
@@ -15,7 +30,9 @@ public class Giocatore{
 		vittorie = 0;
 	}
 	
-	
+	/**
+	 * permette al giocatore di dividere la mano e formarne quindi 2 
+	 */
 	private void split(){
 		Mano m, m2;
 		m  = mano[0];
@@ -45,35 +62,60 @@ public class Giocatore{
 		System.out.println("Valore mano: " + mano[1].getValore());
 		System.out.println("-----------------------------------------\n");
 	}
-	
+	/**
+	 * Restituisce la mano selezionata dal parametro
+	 * @param n Mano da restituire
+	 * @return mano
+	 */
 	public Mano getMano(int n){
 		return mano[n];
 	}
-	
+	/**
+	 * Restituisce l'intero array di mani
+	 * @return mani
+	 */
 	public Mano[] getMani(){
 		return mano;
 	}
-	
+	/**
+	 * imposta la mano nella posizione dell'array che si desidera
+	 * @param n Mano da impostare
+	 * @param m mano a cui impostarla 
+	 */
 	public void setMano(int n, Mano m){
 		mano[n] = m;
 	}
-	
+	/**
+	 * sostituisce l'array del giocatore con le mani da input 
+	 * @param m Array di mani alla quale impostare le mani
+	 */
 	public void setMani(Mano[] m){
 		mano = m;
 	}
-	
+	/**
+	 * permette di aggiungere una carta alla mano
+	 * @param c carta da inserire
+	 * @param n Mano in cui inserire la carta 
+	 */
 	public void riceviCarta(Carta c, int n){
 		mano[n].aggiungiCarta(c);
 	}
-	
+	/**
+	 * incrementa il numero di vittorie 
+	 */
 	public void aggiungiVittoria(){
 		vittorie += 1; 
 	}
-	
+	/**
+	* restituisce il numero di vittorie
+	* @return numero di vittorie
+	*/
 	public int getVittorie(){
 		return vittorie;
 	}
-	
+	/**
+	* resetta tutti i valori delle mani 
+	*/
 	public void reset(){
 		mano = null;
 		mano = new Mano[2];
@@ -82,7 +124,10 @@ public class Giocatore{
 			mano[i] = new Mano();
 	
 	}
-	
+	/**
+	* permette di gestire le eccezzioni quando l'utente inserisce l'input da tastiera 
+	* @return l'inserimento da tastiera
+	*/
 	private int getInput(){
 		Scanner input = new Scanner(System.in);
 		int n = -1;
@@ -95,7 +140,11 @@ public class Giocatore{
 		}while(!ok);
 		return n;
 	}
-	
+	/**
+	*  metodo ausiliario per turno, che permette di pescare una carta o passare il turno
+	* @param n numero corrispondente alla mano sulla quale si vuole eseguire il turno
+	* @return boolean in base all'operazione eseguita
+	*/
 	private boolean miniTurno(int n){
 		Scanner input = new Scanner(System.in);
 		boolean output = false;
@@ -108,23 +157,23 @@ public class Giocatore{
 				is = 2;
 				System.out.println(mano[n].stampaManoASCII(6));
 				if(n == 0){
-					System.out.println("\nTurno con la prima mano\n");
+					System.out.println("Turno con la prima mano\n");
 					System.out.println("Valore prima mano: " + mano[0].getValore() + "\n");
 				}else if(n == 1){
-					System.out.println("\nTurno con la seconda mano\n");
+					System.out.println("Turno con la seconda mano\n");
 					System.out.println("Valore seconda mano: " + mano[1].getValore() + "\n");
 				}
 			}else{
 				System.out.println(mano[n].stampaManoASCII(6));
 				if(n == 0){
-					System.out.println("\nTurno con la prima mano\n");
+					System.out.println("Turno con la prima mano\n");
 					System.out.println("Valore prima mano: " + mano[0].getValore() + "\n");
 				}else if(n == 1){
-					System.out.println("\nTurno con la seconda mano\n");
+					System.out.println("Turno con la seconda mano\n");
 					System.out.println("Valore seconda mano: " + mano[1].getValore() + "\n");
 				}
 				
-				System.out.println("inserire 1 per pescare una carta, 2 per fermarti");
+				System.out.println("Inserire 1 per pescare una carta, 2 per fermarti\n");
 				is = getInput();
 				System.out.println();
 				
@@ -146,7 +195,11 @@ public class Giocatore{
 		return output;
 	}
 
-	
+	/**
+	* gestisce tutte le operazioni possibili che un giocatore può effettuare durante un intero turno 
+	* @param m mazzo in tavola
+	* @return il mazzo con tutti i valori aggiornati 
+	*/
 	public Mazzo turno(Mazzo m){
 		
 		Scanner input = new Scanner(System.in);
@@ -171,7 +224,7 @@ public class Giocatore{
 					is = 3;
 				}else{
 					System.out.println(mano[0].stampaManoASCII(6));
-					System.out.println("\nTurno con la prima mano\n");
+					System.out.println("Turno con la prima mano\n");
 					System.out.println("Valore prima mano: " + mano[0].getValore() + "\n");
 					System.out.println("inserire 1 per pescare una carta nella mano, 2 per dividere la mano, 3 per fermarti");
 					is = getInput();
@@ -192,7 +245,6 @@ public class Giocatore{
 		
 		if(!fT1 || !fT2){
 			while(!fT1){
-				
 				fT1 = miniTurno(0); 
 			}
 			if(!fT2){

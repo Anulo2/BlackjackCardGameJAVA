@@ -1,11 +1,37 @@
+/** 
+ * Classe contenente tutti i metodi necesari alla corretta esecuzione del gioco "Black Jack".
+ * @author Leonardo Canello, Gabriele Trevisan, Leonardo Daniele, Bogdan Popov, Alberto Bettella e Simone Dassani
+ * @version 1.0 (21-02-2019)
+*/
 import java.util.Scanner;
 //import java.util.Arrays;
 public class Gioco{
+	
+	/**
+	* Numero di giocatori.
+	*/
 	int numGiocatori;
+	
+	/**
+	* Numero di mazzi con cui si gioca.
+	*/
 	int numMazzi;
+	
+	/**
+	* Oggetto mazzo per gestire le carte.
+	*/
 	Mazzo mazzo;
+	
+	/**
+	* Array di oggetti giocatore per gestire i giocatori.
+	*/
 	Giocatore[] giocatori;
 	
+	/**
+	* Inizializza l'array di giocatori e il mazzo.
+	* @param g Numero di giocatori
+	* @param m Numero di mazzi
+	*/
 	public Gioco(int g, int m){
 		
 		numGiocatori = g <= 8 ? g : 8;
@@ -23,10 +49,17 @@ public class Gioco{
 		inizializzaGiocatori();
 	}
 	
+	/**
+	* Inizializza e mescola il mazzo.
+	*/
 	public void inizializzaMazzo(){
 		mazzo = new Mazzo(numMazzi);
 		mazzo.mescola();
 	}
+	
+	/**
+	* inizializza i giocatori e distribuisce le carte.
+	*/
 	public void inizializzaGiocatori(){
 		giocatori = new Giocatore[numGiocatori];
 		
@@ -40,6 +73,11 @@ public class Gioco{
 			System.out.println();
 		}
 	}
+	
+	/**
+	* Azzera lo stato dei giocatori e distribuisce delle nuove carte.
+	* Mantiene il conteggio delle vittorie.
+	*/
 	public void resettaGiocatori(){		
 		for(int i = 0; i < numGiocatori; i++){
 			giocatori[i].reset();
@@ -50,7 +88,9 @@ public class Gioco{
 				giocatori[i].riceviCarta(mazzo.estrai(), 0);	
 	}
 	
-	
+	/**
+	* Gestisce l'interazione tra i giocatori e decreta il vincitore.
+	*/
 	public void gioca(){
 		Scanner scanner = new Scanner(System.in);
 		String continua;
@@ -61,8 +101,25 @@ public class Gioco{
 				resettaGiocatori();
 			}
 			volte++;
+			
+			int maxP = -1;
+			int p = -1;
+			for(int i = 1; i < numGiocatori; i++){
+				p = giocatori[i].getMano(0).getValore();
+				if(p > maxP){
+					maxP = p; 
+				}
+			}
+			
 			for(int i = 0; i < numGiocatori; i++){
-				System.out.println("\n\n\nGiocatore " + (i + 1) + "\n\n\n");
+				
+				System.out.println("\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510");
+				System.out.println("\u007C Giocatore " + (i + 1) + " \u007C");
+				System.out.println("\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n");
+				
+				System.out.println("\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510");
+				System.out.println("\u007C Punteggio massimo giocatori: " + maxP + (maxP < 10 ? "  \u007C" : " \u007C"));
+				System.out.println("\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n");
 				mazzo = giocatori[i].turno(mazzo);
 			}
 			
@@ -125,7 +182,7 @@ public class Gioco{
 			}
 			
 			do{
-				System.out.println("Vuoi continuare a giocare? (si/no)");
+				System.out.println("Vuoi continuare a giocare? (si/no)\n");
 				continua = scanner.nextLine();
 			}while(!(continua.equals("si")) && !(continua.equals("no")));
 			

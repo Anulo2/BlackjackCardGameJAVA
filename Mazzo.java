@@ -28,6 +28,10 @@ public class Mazzo{
 		carte = new Carta[maxCarte];		
 		inizializza();
 	}
+	/**
+	* Crea un array di carte grande quanto il numero di carte inserito e inizializza il mazzo ai valori default
+	* @param n numero di mazzi
+	*/
 	public Mazzo(int n){
 		maxCarte = 52 * n;
 		carte = new Carta[maxCarte];		
@@ -287,10 +291,21 @@ public class Mazzo{
 		}*/
 		System.out.println();
 	}
+	/**
+	* restituisce l'array di carte sotto forma grafica 
+	* @param m
+	* @return carte del mazzo
+	*/
 	public String stampaMazzoASCII(int m){
 		StampaCarte carteASCII = new StampaCarte(carte);
 		return carteASCII.StampaggioCarte(m);
 	}
+	/**
+	* restituisce l'array di carte in input sotto forma grafica 
+	* @param c[]
+	* @param m
+	* @return carte del mazzo
+	*/
 	public String stampaMazzoASCII(Carta[] c, int m){
 		StampaCarte carteASCII = new StampaCarte(c);
 		return carteASCII.StampaggioCarte(m);
